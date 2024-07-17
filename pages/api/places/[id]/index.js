@@ -28,6 +28,14 @@ export default async function handler(request, response) {
     }
   }
 
+  if (request.method === "DELETE") {
+    await Place.findByIdAndDelete(id);
+
+    response
+      .status(200)
+      .json({ status: `Location ${id} successfully deleted.` });
+  }
+
   if (!id) {
     return;
   }
